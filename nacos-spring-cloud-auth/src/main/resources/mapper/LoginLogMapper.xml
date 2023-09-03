@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.nacosspringcloudauth.dao.LoginLogDao">
+    <resultMap id="loginLogMap" type="org.example.nacosspringcloudcommonentity.LoginLog">
+        <id column="id" property="id"/>
+        <result column="account" property="account"/>
+        <result column="message" property="message"/>
+        <result column="login_status" property="status"/>
+        <result column="login_time" property="loginTime"/>
+    </resultMap>
+
+    <insert id="add" parameterType="org.example.nacosspringcloudcommonentity.LoginLog">
+        insert into login_log (account,message,login_status,login_time) values (#{account},#{message},#{status},#{loginTime})
+    </insert>
+
+    <select id="findByAccount" resultMap="loginLogMap">
+        select * from login_log where account=#{account}
+    </select>
+    
+    <select id="findAll" resultMap="loginLogMap">
+        select * from login_log
+    </select>
+</mapper>
+
+

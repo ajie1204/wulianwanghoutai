@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.nacosspringcloudsysmanage.dao.SysUserDao">
+    <resultMap id="sysUserMap" type="org.example.nacosspringcloudcommonentity.SysUser">
+        <result column="sysUser_id" property="sysUserId"/>
+        <result column="account" property="account"/>
+        <result column="sysUser_name" property="sysUserName"/>
+        <result column="sysUser_password" property="password"/>
+        <result column="role_id" property="roleId"/>
+    </resultMap>
+    
+    <insert id="add" parameterType="org.example.nacosspringcloudcommonentity.SysUser">
+        insert into sysuser (account, sysUser_name, sysUser_password, role_id) VALUES (#{account},#{sysUserName},#{password},#{roleId})
+    </insert>
+
+    <select id="find" resultMap="sysUserMap">
+        select * from sysuser where account=#{account}
+    </select>
+</mapper>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.scene.dao.WaterDeviceTaskDao">
+    <resultMap id="waterDeviceTaskMap" type="org.example.nacosspringcloudcommonentity.WaterDeviceTask">
+        <result column="id" property="id"/>
+        <result column="cmd" property="cmd"/>
+        <result column="task_name" property="taskName"/>
+    </resultMap>
+
+    <select id="findAllTask" resultMap="waterDeviceTaskMap">
+        select * from water_device_task
+    </select>
+</mapper>

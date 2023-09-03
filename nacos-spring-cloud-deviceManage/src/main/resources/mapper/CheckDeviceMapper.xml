@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.nacosspringclouddevicemanage.dao.CheckDeviceDao">
+    <resultMap id="checkDeviceMap" type="org.example.nacosspringcloudcommonentity.CheckDevice">
+        <id column="device_id" property="deviceId"/>
+    </resultMap>
+
+
+
+    <select id="check" resultType="String">
+        select device_id from check_device
+    </select>
+
+    <update id="upData" parameterType="org.example.nacosspringcloudcommonentity.CheckDevice">
+        update  check_device set device_id =#{deviceId}
+    </update>
+
+</mapper>

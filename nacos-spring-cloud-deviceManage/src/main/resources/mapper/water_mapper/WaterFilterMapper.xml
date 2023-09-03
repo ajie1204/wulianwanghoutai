@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.nacosspringclouddevicemanage.dao.water_dao.WaterFilterDao">
+    <resultMap id="waterFilterMap" type="org.example.nacosspringcloudcommonentity.water.WaterFilter">
+        <id column="deviceId" property="deviceId"/>
+        <result column="device_remainder" property="remainder"/>
+        <result column="filter_PP" property="PP"/>
+        <result column="filter_GAC" property="GAC"/>
+        <result column="filter_RO" property="RO"/>
+        <result column="filter_T33" property="T33"/>
+        <result column="filter_time" property="time"/>
+    </resultMap>
+
+    <insert id="add" parameterType="org.example.nacosspringcloudcommonentity.water.WaterFilter">
+              insert into water_filter values (#{deviceId},#{remainder},180,180,730,365,#{time})
+    </insert>
+
+    <select id="find" resultMap="waterFilterMap">
+        select*
+        from water_filter
+        where deviceId = #{deviceId}
+    </select>
+
+    <update id="update" parameterType="org.example.nacosspringcloudcommonentity.water.WaterFilter">
+        update water_filter
+        set device_remainder=#{remainder},
+            filter_PP=#{PP},
+            filter_GAC=#{GAC},
+            filter_RO=#{RO},
+            filter_T33=#{T33},
+            filter_time=#{time}
+        where deviceId = #{deviceId}
+    </update>
+
+    <update id="updateAuto" parameterType="org.example.nacosspringcloudcommonentity.water.WaterFilter">
+        update water_filter
+        set filter_PP=filter_PP - 1,
+            filter_GAC=filter_GAC - 1,
+            filter_RO=filter_RO - 1,
+            filter_T33=filter_T33 - 1,
+            filter_time=filter_time - 1
+        where deviceId = #{deviceId}
+    </update>
+
+    <select id="findTime" resultType="Date">
+        select filter_time
+        from water_filter
+        where deviceId = #{deviceId}
+    </select>
+
+
+</mapper>

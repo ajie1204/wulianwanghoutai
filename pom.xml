@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>nacos</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.12.RELEASE</version>
+        <relativePath/>
+    </parent>
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+    <modules>
+        <module>nacos-spring-cloud-config</module>
+        <module>nacos-spring-cloud-custom_protocol_gateway</module>
+        <module>nacos-spring-cloud-common-entity</module>
+<!--        <module>nacos-spring-cloud-common-core</module>-->
+        <module>nacos-spring-cloud-deviceManage</module>
+        <module>nacos-spring-cloud-interact</module>
+        <module>nacos-spring-cloud-waterPurifier</module>
+        <module>nacos-spring-cloud-nettyServer</module>
+        <module>nacos-spring-cloud-auth</module>
+        <module>nacos-spring-cloud-userManage</module>
+        <module>nacos-spring-cloud-sysManage</module>
+        <module>nacos-spring-cloud-place</module>
+        <module>nacos-spring-cloud-scene</module>
+        <module>nacos-spring-cloud-PSOBP</module>
+        <module>nacos-spring-cloud-message</module>
+        <module>ydyd-mine</module>
+        <module>ydyd-auth</module>
+        <!--        <module>nacos-spring-cloud-deviceManage</module>-->
+
+    </modules>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>2.3.12.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Hoxton.SR12</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2.2.7.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-openfeign</artifactId>
+                <version>2.0.1.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>1.2.76</version>
+            </dependency>
+
+            <!-- lombok依赖包 -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.16.10</version>
+                <scope>provided</scope>
+            </dependency>
+
+
+
+        </dependencies>
+    </dependencyManagement>
+
+</project>

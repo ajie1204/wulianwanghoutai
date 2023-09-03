@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.scene.dao.SceneDao">
+
+    <resultMap type="org.example.nacosspringcloudcommonentity.Scene" id="SceneMap">
+        <result property="scenesId" column="scenes_id" jdbcType="INTEGER"/>
+        <result property="scenesName" column="scenes_name" jdbcType="VARCHAR"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="selectByUser" resultMap="SceneMap">
+        select
+          scenes_id, scenes_name, user_id
+        from scene
+        where user_id = #{userId}
+    </select>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="SceneMap">
+        select
+          scenes_id, scenes_name, user_id
+        from scene
+        where scenes_id = #{scenesId}
+    </select>
+
+    <!--根据名字查询单个-->
+    <select id="queryByName" resultMap="SceneMap">
+        select
+            scenes_id, scenes_name, user_id
+        from scene
+        where user_id=#{userId} and scenes_name=#{scenesName}
+    </select>
+
+
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="SceneMap">
+        select
+          scenes_id, scenes_name, user_id
+        from scene
+        <where>
+            <if test="scenesId != null">
+                and scenes_id = #{scenesId}
+            </if>
+            <if test="scenesName != null and scenesName != ''">
+                and scenes_name = #{scenesName}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from scene
+        <where>
+            <if test="scenesId != null">
+                and scenes_id = #{scenesId}
+            </if>
+            <if test="scenesName != null and scenesName != ''">
+                and scenes_name = #{scenesName}
+            </if>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="scenesId" useGeneratedKeys="true">
+        insert into scene(scenes_name, user_id)
+        values (#{scenesName},#{userId})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="scenesId" useGeneratedKeys="true">
+        insert into scene(scenes_name, user_id)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.scenesName}, #{entity.userId})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="scenesId" useGeneratedKeys="true">
+        insert into scene(scenes_name, user_id)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.scenesName}, #{entity.userId})
+        </foreach>
+        on duplicate key update
+        scenes_name = values(scenes_name),
+        user_id = values(user_id)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update scene
+        <set>
+            <if test="scenesName != null and scenesName != ''">
+                scenes_name = #{scenesName},
+            </if>
+            <if test="userId != null">
+                user_id = #{userId},
+            </if>
+        </set>
+        where scenes_id = #{scenesId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from scene where scenes_id = #{scenesId}
+    </delete>
+
+    <select id="selectAllScenes" resultMap="SceneMap">
+        select * from scene;
+    </select>
+
+
+
+</mapper>
+

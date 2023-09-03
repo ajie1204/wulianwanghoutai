@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.ydyd.dao.VipDao">
+
+    <resultMap type="org.example.nacosspringcloudcommonentity.customer.Customer" id="CustomerMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="unid" column="unid" jdbcType="INTEGER"/>
+        <result property="openid" column="openid" jdbcType="VARCHAR"/>
+        <result property="yarOpenid" column="yar_openid" jdbcType="VARCHAR"/>
+        <result property="mobile" column="mobile" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="salt" column="salt" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+        <result property="wxAppid" column="wx_appid" jdbcType="VARCHAR"/>
+        <result property="yarAppid" column="yar_appid" jdbcType="VARCHAR"/>
+        <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+        <result property="provinceId" column="province_id" jdbcType="INTEGER"/>
+        <result property="cityId" column="city_id" jdbcType="INTEGER"/>
+        <result property="districtId" column="district_id" jdbcType="INTEGER"/>
+        <result property="addr" column="addr" jdbcType="VARCHAR"/>
+        <result property="levelId" column="level_id" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="isPerpetual" column="is_perpetual" jdbcType="INTEGER"/>
+        <result property="firstParent" column="first_parent" jdbcType="INTEGER"/>
+        <result property="secondParent" column="second_parent" jdbcType="INTEGER"/>
+        <result property="shopId" column="shop_id" jdbcType="INTEGER"/>
+        <result property="shopUserId" column="shop_user_id" jdbcType="INTEGER"/>
+        <result property="bindDate" column="bind_date" jdbcType="TIMESTAMP"/>
+        <result property="requestCode" column="request_code" jdbcType="VARCHAR"/>
+        <result property="withdrawal" column="withdrawal" jdbcType="NUMERIC"/>
+        <result property="description" column="description" jdbcType="VARCHAR"/>
+        <result property="vipupdateAt" column="vipupdate_at" jdbcType="TIMESTAMP"/>
+        <result property="vipcard" column="vipcard" jdbcType="VARCHAR"/>
+        <result property="cardId" column="card_id" jdbcType="VARCHAR"/>
+        <result property="cardName" column="card_name" jdbcType="VARCHAR"/>
+        <result property="orderNum" column="order_num" jdbcType="VARCHAR"/>
+        <result property="giveDays" column="give_days" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap type="org.example.nacosspringcloudcommonentity.customer.UserLevel" id="UserLevelMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="growthMin" column="growth_min" jdbcType="INTEGER"/>
+        <result property="growthMax" column="growth_max" jdbcType="INTEGER"/>
+        <result property="purchaseAmount" column="purchase_amount" jdbcType="NUMERIC"/>
+        <result property="description" column="description" jdbcType="VARCHAR"/>
+        <result property="content" column="content" jdbcType="VARCHAR"/>
+        <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+        <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
+        <result property="goodsIds" column="goods_ids" jdbcType="VARCHAR"/>
+        <result property="deductionMoney" column="deduction_money" jdbcType="NUMERIC"/>
+        <result property="couponData" column="coupon_data" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap type="org.example.nacosspringcloudcommonentity.customer.CustomerActivity" id="CustomerActivityMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="unid" column="unid" jdbcType="INTEGER"/>
+        <result property="activityId" column="activity_id" jdbcType="INTEGER"/>
+        <result property="num" column="num" jdbcType="INTEGER"/>
+        <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+        <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <resultMap type="org.example.nacosspringcloudcommonentity.customer.CustomerAddress" id="CustomerAddressMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="unid" column="unid" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="mobile" column="mobile" jdbcType="VARCHAR"/>
+        <result property="isDef" column="is_def" jdbcType="INTEGER"/>
+        <result property="provinceId" column="province_id" jdbcType="INTEGER"/>
+        <result property="province" column="province" jdbcType="VARCHAR"/>
+        <result property="cityId" column="city_id" jdbcType="INTEGER"/>
+        <result property="city" column="city" jdbcType="VARCHAR"/>
+        <result property="areaId" column="area_id" jdbcType="INTEGER"/>
+        <result property="area" column="area" jdbcType="VARCHAR"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="lon" column="lon" jdbcType="NUMERIC"/>
+        <result property="lat" column="lat" jdbcType="NUMERIC"/>
+        <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+        <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <resultMap type="org.example.nacosspringcloudcommonentity.customer.CustomerDetail" id="CustomerDetailMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="money" column="money" jdbcType="NUMERIC"/>
+        <result property="frozenMoney" column="frozen_money" jdbcType="NUMERIC"/>
+        <result property="totalRecharge" column="total_recharge" jdbcType="NUMERIC"/>
+        <result property="totalMoney" column="total_money" jdbcType="NUMERIC"/>
+        <result property="score" column="score" jdbcType="INTEGER"/>
+        <result property="shopingMoney" column="shoping_money" jdbcType="NUMERIC"/>
+        <result property="useTotal" column="use_total" jdbcType="NUMERIC"/>
+        <result property="deductionMoney" column="deduction_money" jdbcType="NUMERIC"/>
+        <result property="growthValue" column="growth_value" jdbcType="NUMERIC"/>
+    </resultMap>
+
+    <resultMap type="org.example.nacosspringcloudcommonentity.customer.CustomerLevelIncome" id="CustomerLevelIncomeMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="merchant" column="merchant" jdbcType="INTEGER"/>
+        <result property="yhq" column="yhq" jdbcType="INTEGER"/>
+        <result property="jfmerchant" column="jfmerchant" jdbcType="INTEGER"/>
+        <result property="ccbx" column="ccbx" jdbcType="INTEGER"/>
+        <result property="lyqx" column="lyqx" jdbcType="INTEGER"/>
+        <result property="gwj" column="gwj" jdbcType="INTEGER"/>
+        <result property="unid" column="unid" jdbcType="INTEGER"/>
+        <result property="dkj" column="dkj" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap type="org.example.nacosspringcloudcommonentity.customer.CustomerScore" id="CustomerScoreMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="uid" column="uid" jdbcType="INTEGER"/>
+        <result property="score" column="score" jdbcType="INTEGER"/>
+        <result property="type" column="type" jdbcType="INTEGER"/>
+        <result property="orderSn" column="order_sn" jdbcType="VARCHAR"/>
+        <result property="desc" column="desc" jdbcType="VARCHAR"/>
+        <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+
+
+    <!--注册会员 -->
+    <update id="registeredVip" >
+        update customer set level_id=3
+        where id = #{id}
+    </update>
+
+
+
+
+
+</mapper>
+

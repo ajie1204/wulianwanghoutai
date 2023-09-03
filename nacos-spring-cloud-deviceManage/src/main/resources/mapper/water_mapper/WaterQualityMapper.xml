@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.nacosspringclouddevicemanage.dao.water_dao.WaterQualityDao">
+    <resultMap id="waterQualityMap" type="org.example.nacosspringcloudcommonentity.water.WaterQuality">
+        <id column="id" property="id"/>
+        <result column="deviceId" property="deviceId"/>
+        <result column="old_tds" property="raw_water"/>
+        <result column="new_tds" property="clean_water"/>
+        <result column="quality_time" property="time"/>
+    </resultMap>
+
+<!--    TODO-->
+    <insert id="add" parameterType="org.example.nacosspringcloudcommonentity.water.WaterQuality">
+        insert into water_quality (deviceId,old_tds,new_tds,quality_time) values (#{deviceId},#{raw_water},#{clean_water},#{time})
+    </insert>
+
+    <select id="findLately" resultMap="waterQualityMap">
+        select old_tds,new_tds from water_quality where deviceId=#{deviceId} order by quality_time desc limit 0,1
+    </select>
+
+</mapper>

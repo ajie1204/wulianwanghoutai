@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.nacosspringcloudusermanage.dao.UserManageDao">
+    <resultMap id="userManageMap" type="org.example.nacosspringcloudcommonentity.User">
+        <id column="id" property="userId"/>
+        <result column="mobile" property="account"/>
+        <result column="password" property="password"/>
+        <result column="name" property="userName"/>
+        <result column="address" property="address"/>
+        <result column="login_time" property="loginTime"/>
+        <result column="register_time" property="registerTime"/>
+        <result column="role_id" property="roleId"/>
+    </resultMap>
+
+    <insert id="add" parameterType="org.example.nacosspringcloudcommonentity.User">
+        insert into customer (mobile,password,name,addr)
+        values (#{account},#{password},#{userName},#{address})
+    </insert>
+
+    <delete id="del" parameterType="org.example.nacosspringcloudcommonentity.User">
+        delete from customer where id=#{userId}
+    </delete>
+
+    <update id="update" parameterType="org.example.nacosspringcloudcommonentity.User">
+        update customer set mobile=#{account},password=#{password},name=#{userName},addr=#{address}
+        where id=#{userId}
+    </update>
+    
+    <update id="updateUserName" parameterType="org.example.nacosspringcloudcommonentity.User">
+        update customer set name=#{userName} where id=#{userId}
+    </update>
+    
+    <select id="findAll" resultMap="userManageMap">
+        select * from customer
+    </select>
+    
+    <select id="findByName" resultMap="userManageMap">
+        select * from customer where name=#{userName}
+    </select>
+
+    <select id="findByAccount" resultMap="userManageMap">
+        select * from customer where mobile=#{account}
+    </select>
+
+    <select id="findBySearchBar" resultMap="userManageMap" parameterType="org.example.nacosspringcloudcommonentity.User">
+        select * from customer
+            <where>
+                <if test="account!=null and account!=''">
+                    and mobile=#{account}
+                </if>
+                <if test="userName!=null and userName!=''">
+                    and user_name=#{userName}
+                </if>
+                <if test="startTime!=null">
+                    and register_time &gt;= #{startTime}
+                </if>
+                <if test="endTime!=null">
+                    and register_time &lt;= #{endTime}
+                </if>
+            </where>
+    </select>
+
+    <select id="find" resultMap="userManageMap">
+        select*from customer where mobile=#{account}
+    </select>
+
+    <update id="updatePassword" parameterType="org.example.nacosspringcloudcommonentity.User">
+        update customer set password=#{password} where mobile=#{account}
+    </update>
+
+</mapper>

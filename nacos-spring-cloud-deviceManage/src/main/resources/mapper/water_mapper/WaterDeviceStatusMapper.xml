@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.nacosspringclouddevicemanage.dao.water_dao.WaterDeviceStatusDao">
+    <resultMap id="waterDeviceStatusMap" type="org.example.nacosspringcloudcommonentity.water.WaterDeviceStatus">
+        <id column="id" property="id"/>
+        <result column="deviceId" property="deviceId"/>
+        <result column="standby" property="standby"/>
+        <result column="heat" property="heat"/>
+        <result column="water_making" property="waterMaking"/>
+        <result column="child_lock" property="childLock"/>
+        <result column="maxTemp" property="maxTemp"/>
+        <result column="water_lacking" property="lacking"/>
+        <result column="water_leaking" property="leaking"/>
+        <result column="device_online" property="online"/>
+        <result column="device_csq" property="csq"/>
+        <result column="status_time" property="time"/>
+        <result column="hot_water" property="hotWater"/>
+        <result column="cold_water" property="coldWater"/>
+        <result column="washing" property="washing"/>
+        <result column="checking" property="checking"/>
+    </resultMap>
+
+    <insert id="add" parameterType="org.example.nacosspringcloudcommonentity.water.WaterDeviceStatus">
+        insert into waterdevicestatus (deviceId,standby,heat,water_making,child_lock,maxTemp,water_lacking,water_leaking,device_online,device_csq,status_time,hot_water,cold_water,washing,checking)
+            values (#{deviceId},#{standby},#{heat},#{waterMaking},#{childLock},#{maxTemp},#{lacking},#{leaking},#{online},#{csq},#{time},#{hotWater},#{coldWater},#{washing},#{checking})
+    </insert>
+
+    <update id="update" parameterType="org.example.nacosspringcloudcommonentity.water.WaterDeviceStatus">
+        update waterdevicestatus set water_making=#{waterMaking},water_lacking=#{lacking},water_leaking=#{leaking},
+                                     child_lock=#{childLock},heat=#{heat},standby=#{standby},maxTemp=#{maxTemp},
+                                     status_time=#{time},hot_water=#{hotWater},cold_water=#{coldWater},
+                                     washing=#{washing},checking=#{checking} where deviceId=#{deviceId}
+    </update>
+
+    <update id="updateStandBy" parameterType="org.example.nacosspringcloudcommonentity.water.WaterDeviceStatus">
+        update waterdevicestatus set standby=#{standby},status_time=#{time} where deviceId=#{deviceId}
+    </update>
+
+    <update id="updateHeat" parameterType="org.example.nacosspringcloudcommonentity.water.WaterDeviceStatus">
+        update waterdevicestatus set heat=#{heat},status_time=#{time} where deviceId=#{deviceId}
+    </update>
+
+    <update id="updateTemp" parameterType="org.example.nacosspringcloudcommonentity.water.WaterDeviceStatus">
+        update waterdevicestatus set maxTemp=#{maxTemp},status_time=#{time} where deviceId=#{deviceId}
+    </update>
+
+    <update id="updateChildLock" parameterType="org.example.nacosspringcloudcommonentity.water.WaterDeviceStatus">
+        update waterdevicestatus set child_lock=#{childLock},status_time=#{time} where deviceId=#{deviceId}
+    </update>
+
+    <update id="updateWaterMaking" parameterType="org.example.nacosspringcloudcommonentity.water.WaterDeviceStatus">
+        update waterdevicestatus set water_making=#{waterMaking},status_time=#{time} where deviceId=#{deviceId}
+    </update>
+
+    <update id="updateLacking" parameterType="org.example.nacosspringcloudcommonentity.water.WaterDeviceStatus">
+        update waterdevicestatus set water_lacking=#{lacking},status_time=#{time} where deviceId=#{deviceId}
+    </update>
+
+    <update id="updateLeaking" parameterType="org.example.nacosspringcloudcommonentity.water.WaterDeviceStatus">
+        update waterdevicestatus set water_leaking=#{leaking},status_time=#{time} where deviceId=#{deviceId}
+    </update>
+
+    <update id="updateRemainder" parameterType="org.example.nacosspringcloudcommonentity.water.WaterDeviceStatus">
+        update waterdevicestatus set remainder=remainder-1
+    </update>
+
+    <update id="updateOnline" parameterType="org.example.nacosspringcloudcommonentity.water.WaterDeviceStatus">
+        update waterdevicestatus set device_online=#{online},status_time=#{time} where deviceId=#{deviceId}
+    </update>
+
+    <update id="updateCsq" parameterType="org.example.nacosspringcloudcommonentity.water.WaterDeviceStatus">
+        update waterdevicestatus set device_csq=#{csq},status_time=#{time} where deviceId=#{deviceId}
+    </update>
+
+
+
+    <select id="findLately" resultMap="waterDeviceStatusMap">
+        select*from waterdevicestatus where deviceId=#{deviceId} order by status_time desc limit 0,1
+    </select>
+
+    <select id="find" resultMap="waterDeviceStatusMap">
+        select*from waterdevicestatus where deviceId=#{deviceId}
+    </select>
+</mapper>

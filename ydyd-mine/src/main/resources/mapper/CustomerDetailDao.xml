@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.ydyd.dao.CustomerDetailDao">
+
+    <resultMap type="org.example.nacosspringcloudcommonentity.customer.CustomerDetail" id="CustomerDetailMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="money" column="money" jdbcType="NUMERIC"/>
+        <result property="frozenMoney" column="frozen_money" jdbcType="NUMERIC"/>
+        <result property="totalRecharge" column="total_recharge" jdbcType="NUMERIC"/>
+        <result property="totalMoney" column="total_money" jdbcType="NUMERIC"/>
+        <result property="score" column="score" jdbcType="INTEGER"/>
+        <result property="shopingMoney" column="shoping_money" jdbcType="NUMERIC"/>
+        <result property="useTotal" column="use_total" jdbcType="NUMERIC"/>
+        <result property="deductionMoney" column="deduction_money" jdbcType="NUMERIC"/>
+        <result property="growthValue" column="growth_value" jdbcType="NUMERIC"/>
+    </resultMap>
+    <resultMap type="org.example.nacosspringcloudcommonentity.customer.log.CustomerLogScore" id="CustomerLogScoreMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="unid" column="unid" jdbcType="INTEGER"/>
+        <result property="integral" column="integral" jdbcType="INTEGER"/>
+        <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+        <result property="orderSn" column="order_sn" jdbcType="VARCHAR"/>
+        <result property="paySn" column="pay_sn" jdbcType="VARCHAR"/>
+        <result property="goodsId" column="goods_id" jdbcType="INTEGER"/>
+        <result property="desc" column="desc" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="adminId" column="admin_id" jdbcType="INTEGER"/>
+    </resultMap>
+
+   <!--  签到  <-->
+   <update id="signIn" >
+       update customer_detail set score=score+2 where user_id=#{userId}
+   </update>
+
+    <!--签到日志-->
+    <insert id="signInLog" >
+        insert into customer_log_score(unid, integral, created_at, `desc`, status, admin_id)
+        values (#{unid},#{integral},#{createdAt},#{desc},#{status},#{adminId})
+    </insert>
+
+    <!--通过手机号查找用户细节-->
+    <select id="getCustomerDetail" resultMap="CustomerDetailMap">
+        select *
+        from customer_detail
+        where user_id=#{userId}
+    </select>
+
+
+    <!--查签到日志-->
+    <select id="getCustomerScoreLog" resultMap="CustomerLogScoreMap">
+        select *
+        from customer_log_score
+        where unid=#{userId}
+    </select>
+
+
+
+
+</mapper>
+

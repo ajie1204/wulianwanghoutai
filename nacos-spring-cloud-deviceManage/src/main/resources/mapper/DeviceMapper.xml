@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.nacosspringclouddevicemanage.dao.DeviceDao">
+    <resultMap id="deviceMap" type="org.example.nacosspringcloudcommonentity.Device">
+        <id column="device_id" property="deviceId"/>
+        <result column="device_name" property="deviceName"/>
+        <result column="device_status" property="online"/>
+        <result column="device_malfunction" property="malfunction"/>
+        <result column="system_id" property="systemId"/>
+        <result column="place_id" property="placeId"/>
+        <result column="user_id" property="userId"/>
+        <result column="device_pictures_id" property="picturesId"/>
+        <result column="activation_time" property="activationTime"/>
+        <result column="remains_time" property="remainsTime"/>
+        <result column="remains" property="remains"/>
+        <result column="device_protocol" property="protocol"/>
+        <result column="device_type" property="type"/>
+    </resultMap>
+
+    <select id="selectDeviceName" resultType="org.example.nacosspringcloudcommonentity.Device">
+        select device_name from device where user_id = #{userId}
+    </select>
+
+    <insert id="add" parameterType="org.example.nacosspringcloudcommonentity.Device">
+        insert into device (device_id,device_name,system_id,device_type,place_id,device_pictures_id)
+        values (#{deviceId},#{deviceName},#{systemId},#{type},#{placeId},#{picturesId})
+    </insert>
+
+    <select id="getSystemName" resultType="String">
+        select system_name from sys where system_id = (select system_id from device where device_id=#{deviceId});
+    </select>
+
+    <select id="findAll" resultMap="deviceMap">
+        select*from device where user_id=#{userId}
+    </select>
+
+    <update id="updateOnline" parameterType="org.example.nacosspringcloudcommonentity.Device">
+        update device set device_status=#{online} where device_id=#{deviceI d}
+    </update>
+
+    <update id="updateMalfunction" parameterType="org.example.nacosspringcloudcommonentity.Device">
+        update device set device_malfunction=#{malfunction} where device_id=#{deviceId}
+    </update>
+
+    <select id="findByPage" resultMap="deviceMap">
+        select * from device
+    </select>
+
+    <select id="findForIndex" resultMap="deviceMap">
+        select device_id,device_name,device_status,device_malfunction,device_type,user_id from device
+        where user_id = #{userId}
+    </select>
+
+    <select id="findByDeviceId" resultMap="deviceMap">
+        select * from device where device_id=#{deviceId}
+    </select>
+
+
+
+    <select id="selectByPlace" resultMap="deviceMap">
+        select*from device where place_id=#{placeId}
+    </select>
+
+    <select id="selectUnbound" resultMap="deviceMap">
+        select*from device where user_id=#{userId} and place_id is null
+    </select>
+
+    <update id="unbound">
+        update device set place_id=null where place_id=#{placeId}
+    </update>
+
+    <update id="bindPlace">
+        update device set place_id=#{placeId} where device_Id=#{deviceId}
+    </update>
+
+    <update id="unboundOne">
+        update device set place_id=null where device_Id=#{deviceId}
+    </update>
+
+    <select id="findBySearchBar" resultMap="deviceMap" parameterType="org.example.nacosspringcloudcommonentity.Device">
+        select * from device
+        <where>
+            <if test="deviceId!=null and deviceId!=''">
+                and device_id=#{deviceId}
+            </if>
+            <if test="online!=null and online!=''">
+                and device_status=#{online}
+            </if>
+            <if test="malfunction!=null and malfunction!=''">
+                and device_malfunction=#{malfunction}
+            </if>
+            <if test="activeStartTime!=null ">
+                and activation_time &gt;=#{activeStartTime}
+            </if>
+            <if test="activeEndTime!=null  ">
+                and activation_time &lt;=#{activeEndTime}
+            </if>
+            <if test="type!=null and type!=''">
+                and device_type=#{type}
+            </if>
+            <if test="remainStartTime!=null ">
+                and remains_time &gt;=#{remainStartTime}
+            </if>
+            <if test="remainEndTime!=null  ">
+                and remains_time &lt;=#{remainEndTime}
+            </if>
+
+        </where>
+    </select>
+
+    <update id="updateDevice" parameterType="org.example.nacosspringcloudcommonentity.Device">
+        update device set device_name=#{deviceName},activation_time=#{activationTime},device_type=#{type}
+        where device_id=#{deviceId}
+    </update>
+
+    <delete id="delDevice" parameterType="org.example.nacosspringcloudcommonentity.Device">
+        delete from device where device_id=#{deviceId}
+    </delete>
+
+    <update id="activateDevice" parameterType="org.example.nacosspringcloudcommonentity.Device">
+        update device set user_id=#{userId},device_name=#{deviceName} where device_id=#{deviceId}
+    </update>
+    <update id="unActivate" parameterType="org.example.nacosspringcloudcommonentity.Device">
+        update device set user_id=null,place_id=null where device_id=#{deviceId}
+    </update>
+</mapper>
+

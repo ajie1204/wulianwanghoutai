@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.ydyd.dao.CustomerDao">
+
+    <resultMap type="org.example.nacosspringcloudcommonentity.customer.Customer" id="CustomerMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="unid" column="unid" jdbcType="INTEGER"/>
+        <result property="openid" column="openid" jdbcType="VARCHAR"/>
+        <result property="yarOpenid" column="yar_openid" jdbcType="VARCHAR"/>
+        <result property="mobile" column="mobile" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="salt" column="salt" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+        <result property="wxAppid" column="wx_appid" jdbcType="VARCHAR"/>
+        <result property="yarAppid" column="yar_appid" jdbcType="VARCHAR"/>
+        <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+        <result property="provinceId" column="province_id" jdbcType="INTEGER"/>
+        <result property="cityId" column="city_id" jdbcType="INTEGER"/>
+        <result property="districtId" column="district_id" jdbcType="INTEGER"/>
+        <result property="addr" column="addr" jdbcType="VARCHAR"/>
+        <result property="levelId" column="level_id" jdbcType="INTEGER"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="isPerpetual" column="is_perpetual" jdbcType="INTEGER"/>
+        <result property="firstParent" column="first_parent" jdbcType="INTEGER"/>
+        <result property="secondParent" column="second_parent" jdbcType="INTEGER"/>
+        <result property="shopId" column="shop_id" jdbcType="INTEGER"/>
+        <result property="shopUserId" column="shop_user_id" jdbcType="INTEGER"/>
+        <result property="bindDate" column="bind_date" jdbcType="TIMESTAMP"/>
+        <result property="requestCode" column="request_code" jdbcType="VARCHAR"/>
+        <result property="withdrawal" column="withdrawal" jdbcType="NUMERIC"/>
+        <result property="description" column="description" jdbcType="VARCHAR"/>
+        <result property="vipupdateAt" column="vipupdate_at" jdbcType="TIMESTAMP"/>
+        <result property="vipcard" column="vipcard" jdbcType="VARCHAR"/>
+        <result property="cardId" column="card_id" jdbcType="VARCHAR"/>
+        <result property="cardName" column="card_name" jdbcType="VARCHAR"/>
+        <result property="orderNum" column="order_num" jdbcType="VARCHAR"/>
+        <result property="giveDays" column="give_days" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap type="org.example.nacosspringcloudcommonentity.customer.UserLevel" id="UserLevelMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="growthMin" column="growth_min" jdbcType="INTEGER"/>
+        <result property="growthMax" column="growth_max" jdbcType="INTEGER"/>
+        <result property="purchaseAmount" column="purchase_amount" jdbcType="NUMERIC"/>
+        <result property="description" column="description" jdbcType="VARCHAR"/>
+        <result property="content" column="content" jdbcType="VARCHAR"/>
+        <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+        <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
+        <result property="goodsIds" column="goods_ids" jdbcType="VARCHAR"/>
+        <result property="deductionMoney" column="deduction_money" jdbcType="NUMERIC"/>
+        <result property="couponData" column="coupon_data" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap type="org.example.nacosspringcloudcommonentity.customer.CustomerActivity" id="CustomerActivityMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="unid" column="unid" jdbcType="INTEGER"/>
+        <result property="activityId" column="activity_id" jdbcType="INTEGER"/>
+        <result property="num" column="num" jdbcType="INTEGER"/>
+        <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+        <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <resultMap type="org.example.nacosspringcloudcommonentity.customer.CustomerAddress" id="CustomerAddressMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="unid" column="unid" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="mobile" column="mobile" jdbcType="VARCHAR"/>
+        <result property="isDef" column="is_def" jdbcType="INTEGER"/>
+        <result property="provinceId" column="province_id" jdbcType="INTEGER"/>
+        <result property="province" column="province" jdbcType="VARCHAR"/>
+        <result property="cityId" column="city_id" jdbcType="INTEGER"/>
+        <result property="city" column="city" jdbcType="VARCHAR"/>
+        <result property="areaId" column="area_id" jdbcType="INTEGER"/>
+        <result property="area" column="area" jdbcType="VARCHAR"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="lon" column="lon" jdbcType="NUMERIC"/>
+        <result property="lat" column="lat" jdbcType="NUMERIC"/>
+        <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+        <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <resultMap type="org.example.nacosspringcloudcommonentity.customer.CustomerDetail" id="CustomerDetailMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="money" column="money" jdbcType="NUMERIC"/>
+        <result property="frozenMoney" column="frozen_money" jdbcType="NUMERIC"/>
+        <result property="totalRecharge" column="total_recharge" jdbcType="NUMERIC"/>
+        <result property="totalMoney" column="total_money" jdbcType="NUMERIC"/>
+        <result property="score" column="score" jdbcType="INTEGER"/>
+        <result property="shopingMoney" column="shoping_money" jdbcType="NUMERIC"/>
+        <result property="useTotal" column="use_total" jdbcType="NUMERIC"/>
+        <result property="deductionMoney" column="deduction_money" jdbcType="NUMERIC"/>
+        <result property="growthValue" column="growth_value" jdbcType="NUMERIC"/>
+    </resultMap>
+
+    <resultMap type="org.example.nacosspringcloudcommonentity.customer.CustomerLevelIncome" id="CustomerLevelIncomeMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="merchant" column="merchant" jdbcType="INTEGER"/>
+        <result property="yhq" column="yhq" jdbcType="INTEGER"/>
+        <result property="jfmerchant" column="jfmerchant" jdbcType="INTEGER"/>
+        <result property="ccbx" column="ccbx" jdbcType="INTEGER"/>
+        <result property="lyqx" column="lyqx" jdbcType="INTEGER"/>
+        <result property="gwj" column="gwj" jdbcType="INTEGER"/>
+        <result property="unid" column="unid" jdbcType="INTEGER"/>
+        <result property="dkj" column="dkj" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap type="org.example.nacosspringcloudcommonentity.customer.CustomerScore" id="CustomerScoreMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="uid" column="uid" jdbcType="INTEGER"/>
+        <result property="score" column="score" jdbcType="INTEGER"/>
+        <result property="type" column="type" jdbcType="INTEGER"/>
+        <result property="orderSn" column="order_sn" jdbcType="VARCHAR"/>
+        <result property="desc" column="desc" jdbcType="VARCHAR"/>
+        <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="CustomerMap">
+        select *
+        from customer
+        where id = #{id}
+    </select>
+
+
+    <!--通过手机号查找-->
+    <select id="queryByMobile" parameterType="string" resultMap="CustomerMap">
+        select *
+        from customer
+        where mobile = #{mobile}
+    </select>
+
+    <!--通过手机号查找会员等级-->
+    <select id="queryCustomerLevelByMobile" resultMap="UserLevelMap">
+        select *
+        from user_level
+        where id=(select level_id from customer where mobile=#{mobile})
+    </select>
+
+    <!--通过手机号查找用户细节-->
+    <select id="queryCustomerDetailByMobile" resultMap="CustomerDetailMap">
+        select *
+        from customer_detail
+        where user_id=(select id from customer where mobile=#{mobile})
+    </select>
+
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into customer(unid, openid, yar_openid, mobile, password, salt, name, avatar, wx_appid, yar_appid,
+                             created_at, province_id, city_id, district_id, addr, level_id, status, update_time,
+                             is_perpetual, first_parent, second_parent, shop_id, shop_user_id, bind_date, request_code,
+                             withdrawal, description, vipupdate_at, vipcard, card_id, card_name, order_num, give_days)
+        values (#{unid}, #{openid}, #{yarOpenid}, #{mobile}, #{password}, #{salt}, #{name}, #{avatar}, #{wxAppid},
+                #{yarAppid}, #{createdAt}, #{provinceId}, #{cityId}, #{districtId}, #{addr}, #{levelId}, #{status},
+                #{updateTime}, #{isPerpetual}, #{firstParent}, #{secondParent}, #{shopId}, #{shopUserId}, #{bindDate},
+                #{requestCode}, #{withdrawal}, #{description}, #{vipupdateAt}, #{vipcard}, #{cardId}, #{cardName},
+                #{orderNum}, #{giveDays})
+    </insert>
+
+
+
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update customer
+        <set>
+            <if test="unid != null">
+                unid = #{unid},
+            </if>
+            <if test="openid != null and openid != ''">
+                openid = #{openid},
+            </if>
+            <if test="yarOpenid != null and yarOpenid != ''">
+                yar_openid = #{yarOpenid},
+            </if>
+            <if test="mobile != null and mobile != ''">
+                mobile = #{mobile},
+            </if>
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+            <if test="salt != null and salt != ''">
+                salt = #{salt},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="avatar != null and avatar != ''">
+                avatar = #{avatar},
+            </if>
+            <if test="wxAppid != null and wxAppid != ''">
+                wx_appid = #{wxAppid},
+            </if>
+            <if test="yarAppid != null and yarAppid != ''">
+                yar_appid = #{yarAppid},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt},
+            </if>
+            <if test="provinceId != null">
+                province_id = #{provinceId},
+            </if>
+            <if test="cityId != null">
+                city_id = #{cityId},
+            </if>
+            <if test="districtId != null">
+                district_id = #{districtId},
+            </if>
+            <if test="addr != null and addr != ''">
+                addr = #{addr},
+            </if>
+            <if test="levelId != null">
+                level_id = #{levelId},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="isPerpetual != null">
+                is_perpetual = #{isPerpetual},
+            </if>
+            <if test="firstParent != null">
+                first_parent = #{firstParent},
+            </if>
+            <if test="secondParent != null">
+                second_parent = #{secondParent},
+            </if>
+            <if test="shopId != null">
+                shop_id = #{shopId},
+            </if>
+            <if test="shopUserId != null">
+                shop_user_id = #{shopUserId},
+            </if>
+            <if test="bindDate != null">
+                bind_date = #{bindDate},
+            </if>
+            <if test="requestCode != null and requestCode != ''">
+                request_code = #{requestCode},
+            </if>
+            <if test="withdrawal != null">
+                withdrawal = #{withdrawal},
+            </if>
+            <if test="description != null and description != ''">
+                description = #{description},
+            </if>
+            <if test="vipupdateAt != null">
+                vipupdate_at = #{vipupdateAt},
+            </if>
+            <if test="vipcard != null and vipcard != ''">
+                vipcard = #{vipcard},
+            </if>
+            <if test="cardId != null and cardId != ''">
+                card_id = #{cardId},
+            </if>
+            <if test="cardName != null and cardName != ''">
+                card_name = #{cardName},
+            </if>
+            <if test="orderNum != null and orderNum != ''">
+                order_num = #{orderNum},
+            </if>
+            <if test="giveDays != null">
+                give_days = #{giveDays},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from customer
+        where id = #{id}
+    </delete>
+
+
+    <!--通过openid查找-->
+    <select id="queryByOpenid" parameterType="string" resultMap="CustomerMap">
+        select *
+        from customer
+        where openid = #{openid}
+    </select>
+
+    <!--通过openid查找-->
+    <select id="queryByRequestCode" parameterType="string" resultMap="CustomerMap">
+        select *
+        from customer
+        where request_code = #{requestCode}
+    </select>
+
+
+    <!--查找父级-->
+    <select id="queryFirstParent" parameterType="int" resultMap="CustomerMap">
+        select *
+        from customer
+        where first_parent = #{firstParent}
+    </select>
+
+
+</mapper>
+

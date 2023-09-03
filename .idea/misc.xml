@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/nacos-spring-cloud-discovery/pom.xml" />
+        <option value="$PROJECT_DIR$/nacos-spring-cloud-config/pom.xml" />
+        <option value="$PROJECT_DIR$/nacos-spring-cloud-interact/pom.xml" />
+        <option value="$PROJECT_DIR$/nacos-spring-cloud-protocol-downlink/pom.xml" />
+        <option value="$PROJECT_DIR$/nacos-spring-cloud-manage/pom.xml" />
+        <option value="$PROJECT_DIR$/nacos-spring-cloud-custom_protocal_gateway/nacos-spring-cloud-custom_protocal_gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/nacos-spring-cloud-custom_protocal_gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/nacos-spring-cloud-common-entity/pom.xml" />
+        <option value="$PROJECT_DIR$/nacos-spring-cloud-auth/pom.xml" />
+        <option value="$PROJECT_DIR$/nacos-spring-cloud-redis/pom.xml" />
+        <option value="$PROJECT_DIR$/nacos-spring-cloud-common-core/pom.xml" />
+        <option value="$PROJECT_DIR$/nacos-spring-cloud-userManage/pom.xml" />
+        <option value="$PROJECT_DIR$/nacos-spring-cloud-system-api/pom.xml" />
+        <option value="$PROJECT_DIR$/nacos-spring-cloud-logManage/pom.xml" />
+        <option value="$PROJECT_DIR$/nacos-spring-cloud-sysManage/pom.xml" />
+        <option value="$PROJECT_DIR$/nacos-spring-cloud-place/pom.xml" />
+        <option value="$PROJECT_DIR$/nacos-spring-cloud-scene/pom.xml" />
+        <option value="$PROJECT_DIR$/nacos-spring-cloud-PSOBP/pom.xml" />
+        <option value="$PROJECT_DIR$/nacos-spring-cloud-gateway/pom.xml" />
+        <option value="$PROJECT_DIR$/../nacos4-19/nacos-spring-cloud-deviceAuth/pom.xml" />
+        <option value="$PROJECT_DIR$/nacos-spring-cloud-deviceAuth/pom.xml" />
+        <option value="$PROJECT_DIR$/nacos-spring-cloud-users/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

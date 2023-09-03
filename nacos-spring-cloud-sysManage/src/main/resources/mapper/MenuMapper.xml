@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.nacosspringcloudsysmanage.dao.MenuDao">
+    <resultMap id="menuMap" type="org.example.nacosspringcloudcommonentity.Menu">
+        <id column="menu_id" property="menuId"/>
+        <result column="menu_name" property="menuName"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="parent_name" property="parentName"/>
+        <result column="order_num" property="orderNum"/>
+        <result column="path" property="path"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+
+
+    <insert id="add" parameterType="org.example.nacosspringcloudcommonentity.Menu">
+        insert into menu (menu_name,parent_id,parent_name,order_num,path)
+        values (#{menuName},#{parentId},#{parentName},#{orderNum},#{path})
+    </insert>
+
+    <select id="findAll" resultMap="menuMap">
+        select * from menu order by parent_id,order_num
+    </select>
+
+    <select id="findByUser" resultMap="menuMap">
+        select menu.menu_id,menu.menu_name,menu.parent_id,menu.parent_name,menu.order_num,menu.path
+        from role_menu as rm
+        inner join user on user.role_id=rm.role_id
+        inner join menu on menu.menu_id=rm.menu_id
+        where user.user_id={userId}
+    </select>
+
+    <select id="findByRole" resultMap="menuMap">
+        select m.menu_id,m.menu_name,m.parent_id,m.parent_name,m.order_num,m.path
+        from menu m,role_menu rm
+        where rm.role_id={roleId} and rm.menu_id=m.menu_id
+    </select>
+
+    <update id="updateMenu" parameterType="org.example.nacosspringcloudcommonentity.Menu">
+        update menu set menu_name=#{menuName},parent_id=#{parentId},parent_name=#{parentName},order_num=#{orderNum},path=#{path}
+        where menu_id=#{menuId}
+    </update>
+
+    <delete id="delMenu" parameterType="org.example.nacosspringcloudcommonentity.Menu">
+        delete from menu where menu_id=#{menuId}
+    </delete>
+
+
+</mapper>

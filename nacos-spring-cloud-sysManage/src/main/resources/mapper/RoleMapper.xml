@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.nacosspringcloudsysmanage.dao.RoleDao">
+    <resultMap id="roleMap" type="org.example.nacosspringcloudcommonentity.Role">
+        <id column="role_id" property="roleId"/>
+        <result column="role_name" property="roleName"/>
+        <result column="role_time" property="roleTime"/>
+        <result column="role_char" property="roleChar"/>
+    </resultMap>
+
+    <insert id="add" parameterType="org.example.nacosspringcloudcommonentity.Role">
+        insert into user_role (role_name,role_time,role_char) values (#{roleName},#{roleTime},#{roleChar})
+    </insert>
+
+    <select id="find" resultMap="roleMap">
+        select * from user_role where role_name=#{roleName}
+    </select>
+
+    <select id="findAll" resultMap="roleMap">
+        select * from user_role
+    </select>
+
+    <delete id="del" parameterType="org.example.nacosspringcloudcommonentity.Role">
+        delete  from user_role where role_id=#{roleId}
+    </delete>
+
+    <update id="updateRole" parameterType="org.example.nacosspringcloudcommonentity.Role">
+        update user_role set role_name=#{roleName},role_char=#{roleChar} where role_id=#{roleId}
+    </update>
+</mapper>
+

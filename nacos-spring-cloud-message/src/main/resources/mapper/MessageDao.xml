@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.message.dao.MessageDao">
+
+    <resultMap type="org.example.nacosspringcloudcommonentity.Message" id="MessageMap">
+        <result property="messageId" column="message_id" jdbcType="INTEGER"/>
+        <result property="deviceId" column="device_id" jdbcType="VARCHAR"/>
+        <result property="context" column="context" jdbcType="VARCHAR"/>
+        <result property="readStatus" column="read_status" jdbcType="INTEGER"/>
+        <result property="malfunction" column="malfunction" jdbcType="INTEGER"/>
+        <result property="time" column="time" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="MessageMap">
+        select
+          message_id, device_id, context, read_status, malfunction, time
+        from message
+        where message_id = #{messageId}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="MessageMap">
+        select
+          message_id, device_id, context, read_status, malfunction, time
+        from message
+        <where>
+            <if test="messageId != null">
+                and message_id = #{messageId}
+            </if>
+            <if test="deviceId != null and deviceId != ''">
+                and device_id = #{deviceId}
+            </if>
+            <if test="context != null and context != ''">
+                and context = #{context}
+            </if>
+            <if test="readStatus != null">
+                and read_status = #{readStatus}
+            </if>
+            <if test="malfunction != null">
+                and malfunction = #{malfunction}
+            </if>
+            <if test="time != null">
+                and time = #{time}
+            </if>
+        </where>
+        limit #{pageable.offset}, #{pageable.pageSize}
+    </select>
+
+    <!--统计总行数-->
+    <select id="count" resultType="java.lang.Long">
+        select count(1)
+        from message
+        <where>
+            <if test="messageId != null">
+                and message_id = #{messageId}
+            </if>
+            <if test="deviceId != null and deviceId != ''">
+                and device_id = #{deviceId}
+            </if>
+            <if test="context != null and context != ''">
+                and context = #{context}
+            </if>
+            <if test="readStatus != null">
+                and read_status = #{readStatus}
+            </if>
+            <if test="malfunction != null">
+                and malfunction = #{malfunction}
+            </if>
+            <if test="time != null">
+                and time = #{time}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="messageId" useGeneratedKeys="true">
+        insert into message(device_id, context, read_status, malfunction, time)
+        values (#{deviceId}, #{context}, #{readStatus}, #{malfunction}, #{time})
+        <selectKey keyProperty="messageId" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <insert id="insertBatch" keyProperty="messageId" useGeneratedKeys="true">
+        insert into message(device_id, context, read_status, malfunction, time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+        (#{entity.deviceId}, #{entity.context}, #{entity.readStatus}, #{entity.malfunction}, #{entity.time})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="messageId" useGeneratedKeys="true">
+        insert into message(device_id, context, read_status, malfunction, time)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.deviceId}, #{entity.context}, #{entity.readStatus}, #{entity.malfunction}, #{entity.time})
+        </foreach>
+        on duplicate key update
+        device_id = values(device_id),
+        context = values(context),
+        read_status = values(read_status),
+        malfunction = values(malfunction),
+        time = values(time)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update message
+        <set>
+            <if test="deviceId != null and deviceId != ''">
+                device_id = #{deviceId},
+            </if>
+            <if test="context != null and context != ''">
+                context = #{context},
+            </if>
+            <if test="readStatus != null">
+                read_status = #{readStatus},
+            </if>
+            <if test="malfunction != null">
+                malfunction = #{malfunction},
+            </if>
+            <if test="time != null">
+                time = #{time},
+            </if>
+        </set>
+        where message_id = #{messageId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from message where message_id = #{messageId}
+    </delete>
+
+    <delete id="deleteByDid">
+        delete from message where device_id = #{deviceId}
+    </delete>
+
+
+
+</mapper>
+

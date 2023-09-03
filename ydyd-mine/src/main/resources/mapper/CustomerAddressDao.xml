@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.ydyd.dao.CustomerAddressDao">
+
+    <resultMap type="org.example.nacosspringcloudcommonentity.customer.CustomerAddress" id="CustomerAddressMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="unid" column="unid" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="mobile" column="mobile" jdbcType="VARCHAR"/>
+        <result property="isDef" column="is_def" jdbcType="INTEGER"/>
+        <result property="provinceId" column="province_id" jdbcType="INTEGER"/>
+        <result property="province" column="province" jdbcType="VARCHAR"/>
+        <result property="cityId" column="city_id" jdbcType="INTEGER"/>
+        <result property="city" column="city" jdbcType="VARCHAR"/>
+        <result property="areaId" column="area_id" jdbcType="INTEGER"/>
+        <result property="area" column="area" jdbcType="VARCHAR"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="lon" column="lon" jdbcType="NUMERIC"/>
+        <result property="lat" column="lat" jdbcType="NUMERIC"/>
+        <result property="createdAt" column="created_at" jdbcType="TIMESTAMP"/>
+        <result property="updatedAt" column="updated_at" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryCustomerAddressByUnid" resultMap="CustomerAddressMap">
+        select  * from customer_address where unid = #{unid}
+    </select>
+
+
+
+    <!--新增所有列-->
+    <insert id="insertCustomerAddress" >
+        insert into customer_address(unid, name, mobile, is_def, province_id, province, city_id, city, area_id, area, address, lon, lat, created_at, updated_at)
+        values (#{unid}, #{name}, #{mobile}, #{isDef}, #{provinceId}, #{province}, #{cityId}, #{city}, #{areaId}, #{area}, #{address}, #{lon}, #{lat}, #{createdAt}, #{updatedAt})
+    </insert>
+
+
+
+    <!--通过主键修改数据-->
+    <update id="updateCustomerAddressById" parameterType="org.example.nacosspringcloudcommonentity.customer.CustomerAddress">
+        update customer_address set name=#{name}, mobile=#{mobile}, is_def=#{isDef},
+                                    province_id=#{provinceId}, province=#{province}, city_id=#{cityId},
+                                    city=#{city}, area_id=#{areaId}, area=#{area}, address=#{address},
+                                    lon=#{lon}, lat=#{lat}, created_at=#{createdAt}, updated_at=#{updatedAt}
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteCustomerAddressById" parameterType="org.example.nacosspringcloudcommonentity.customer.CustomerAddress">
+        delete from customer_address where id = #{id}
+    </delete>
+
+    <!--修改是否默认-->
+    <update id="updateDefById" parameterType="org.example.nacosspringcloudcommonentity.customer.CustomerAddress">
+        update customer_address set is_def=#{isDef},updated_at=#{updatedAt}
+        where id = #{id}
+    </update>
+
+</mapper>
+

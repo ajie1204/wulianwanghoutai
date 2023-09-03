@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="nacos-spring-cloud-scheduleTask" />
+        <module name="ydyd-auth" />
+        <module name="nacos-spring-cloud-waterPurifier" />
+        <module name="nacos-spring-cloud-place" />
+        <module name="nacos-spring-cloud-custom_protocol_gateway" />
+        <module name="nacos-spring-cloud-gateway" />
+        <module name="nacos-spring-cloud-config" />
+        <module name="nacos-spring-cloud-deviceManage" />
+        <module name="nacos-spring-cloud-scene" />
+        <module name="nacos-spring-cloud-common-entity" />
+        <module name="nacos-spring-cloud-userManage" />
+        <module name="nacos-spring-cloud-message" />
+        <module name="nacos-spring-cloud-sysManage" />
+        <module name="nacos-spring-cloud-system-api" />
+        <module name="nacos-spring-cloud-nettyServer" />
+        <module name="nacos-spring-cloud-auth" />
+        <module name="nacos-spring-cloud-PSOBP" />
+        <module name="nacos-spring-cloud-interact" />
+        <module name="nacos-spring-cloud-deviceAuth" />
+        <module name="nacos-spring-cloud-redis" />
+        <module name="ydyd-mine" />
+        <module name="nacos-spring-cloud-common-core" />
+        <module name="nacos-spring-cloud-users" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel target="8">
+      <module name="untitled" target="1.5" />
+      <module name="ydyd" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="nacos-spring-cloud-PSOBP" options="-parameters" />
+      <module name="nacos-spring-cloud-auth" options="-parameters" />
+      <module name="nacos-spring-cloud-common-core" options="-parameters -XDignore.symbol.file" />
+      <module name="nacos-spring-cloud-common-entity" options="-parameters" />
+      <module name="nacos-spring-cloud-config" options="-parameters" />
+      <module name="nacos-spring-cloud-custom_protocol_gateway" options="-parameters" />
+      <module name="nacos-spring-cloud-deviceAuth" options="-parameters" />
+      <module name="nacos-spring-cloud-deviceManage" options="-parameters" />
+      <module name="nacos-spring-cloud-gateway" options="-parameters" />
+      <module name="nacos-spring-cloud-interact" options="-parameters" />
+      <module name="nacos-spring-cloud-message" options="-parameters" />
+      <module name="nacos-spring-cloud-nettyServer" options="-parameters" />
+      <module name="nacos-spring-cloud-place" options="-parameters" />
+      <module name="nacos-spring-cloud-redis" options="-parameters" />
+      <module name="nacos-spring-cloud-scene" options="-parameters" />
+      <module name="nacos-spring-cloud-sysManage" options="-parameters" />
+      <module name="nacos-spring-cloud-system-api" options="-parameters" />
+      <module name="nacos-spring-cloud-userManage" options="-parameters" />
+      <module name="nacos-spring-cloud-users" options="-parameters" />
+      <module name="nacos-spring-cloud-waterPurifier" options="-parameters" />
+      <module name="ydyd-auth" options="-parameters" />
+      <module name="ydyd-mine" options="-parameters" />
+    </option>
+  </component>
+</project>

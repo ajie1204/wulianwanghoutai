@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.scene.dao.TaskDao">
+
+    <resultMap type="org.example.nacosspringcloudcommonentity.Task" id="TaskMap">
+        <result property="taskId" column="task_id" jdbcType="INTEGER"/>
+        <result property="deviceId" column="device_id" jdbcType="VARCHAR"/>
+        <result property="taskName" column="task_name" jdbcType="VARCHAR"/>
+        <result property="cmd" column="cmd" jdbcType="INTEGER"/>
+        <result property="timing" column="timing" jdbcType="VARCHAR"/>
+        <result property="taskSequence" column="task_sequence" jdbcType="INTEGER"/>
+        <result property="scenesId" column="scenes_id" jdbcType="INTEGER"/>
+        <result property="protocol" column="protocol" jdbcType="VARCHAR"/>
+        <result property="data" column="task_data" jdbcType="VARCHAR"/>
+        <result property="status" column="task_status" jdbcType="INTEGER"/>
+        <result property="taskCycle" column="task_cycle" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    
+    <!-- 基本字段 -->
+    <sql id="Base_Column_List">
+        task_id,task_name, device_id, cmd, timing, task_sequence, scenes_id, protocol, task_data, task_status,task_cycle  </sql>
+    
+    <!-- 查询单个 -->
+    <select id="selectById" resultMap="TaskMap">
+        select
+        <include refid="Base_Column_List" />
+        from task
+        where task_id = #{taskId}
+    </select>
+
+    <!-- 分页查询 -->
+    <select id="selectPage" resultMap="TaskMap">
+        select
+        <include refid="Base_Column_List" />
+        from task
+        limit #{start},#{limit}
+    </select>
+
+    <!-- 查询全部 -->
+    <select id="selectAll" resultMap="TaskMap">
+        select
+        <include refid="Base_Column_List" />
+        from task
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="selectList" resultMap="TaskMap">
+        select
+        <include refid="Base_Column_List" />
+        from task
+        <where>
+                    <if test="taskId != null">
+                and task_id = #{taskId}
+            </if>
+                    <if test="deviceId != null and deviceId != ''">
+                and device_id = #{deviceId}
+            </if>
+                    <if test="cmd != null">
+                and cmd = #{cmd}
+            </if>
+                    <if test="timing != null">
+                and timing = #{timing}
+            </if>
+                    <if test="taskSequence != null">
+                and task_sequence = #{taskSequence}
+            </if>
+                    <if test="scenesId != null">
+                and scenes_id = #{scenesId}
+            </if>
+                    <if test="protocol !=null">
+                and protocol = #{protocol}
+            </if>
+                    <if test="status !=null">
+                and task_status = #{status}
+            </if>
+                </where>
+    </select>
+
+    <!-- 新增所有列 -->
+    <insert id="insert" keyProperty="taskId" useGeneratedKeys="true">
+        insert into task(device_id,task_name, cmd, timing, task_sequence, scenes_id, protocol, task_data, task_status, task_cycle)
+        values (#{deviceId},#{taskName}, #{cmd}, #{timing}, #{taskSequence}, #{scenesId}, #{protocol}, #{data}, #{status}, #{taskCycle})
+    </insert>
+    
+    <!-- 批量新增 -->
+    <insert id="batchInsert">
+        insert into task(task_id, device_id, cmd, timing, task_sequence, scenes_id, protocol, task_data, task_status)
+        values 
+        <foreach collection="tasks" item="item" index="index" separator=",">
+        (
+                #{item.taskId}, #{item.deviceId}, #{item.cmd}, #{item.timing}, #{item.taskSequence}, #{item.scenesId}, #{item.protocol}, #{item.data}, #{item.status} )
+         </foreach>
+    </insert>
+
+    <!-- 通过主键修改数据 -->
+    <update id="update" parameterType="org.example.nacosspringcloudcommonentity.Task">
+        update task
+        <set>
+                    <if test="deviceId != null and deviceId != ''">
+                device_id = #{deviceId},
+            </if>
+                    <if test="taskName != null">
+                task_name = #{taskName},
+            </if>
+                    <if test="cmd != null">
+                cmd = #{cmd},
+            </if>
+                    <if test="timing != null">
+                timing = #{timing},
+            </if>
+                    <if test="taskSequence != null">
+                task_sequence = #{taskSequence},
+            </if>
+                    <if test="scenesId != null">
+                scenes_id = #{scenesId},
+            </if>
+                    <if test="protocol != null">
+                protocol= #{protocol},
+            </if>
+                    <if test="data != null">
+                task_data= #{data},
+            </if>
+                    <if test="status != null">
+                task_status= #{status},
+            </if>
+                     <if test="taskCycle != null">
+                task_cycle= #{taskCycle},
+            </if>
+
+                </set>
+        where task_id = #{taskId}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from task where task_id = #{taskId}
+    </delete>
+
+    <delete id="deleteByScenesId">
+        delete from task where scenes_id=#{scenesId}
+    </delete>
+    
+    <!-- 总数 -->
+    <select id="count" resultType="int">
+        select count(*) from task
+    </select>
+
+    <!-- 查询场景下的任务 -->
+    <select id="selectTaskList" resultMap="TaskMap">
+        select * from task where scenes_id=#{scenesId} order by task_sequence
+    </select>
+
+    <update id="updateByStatus">
+        update task set
+    </update>
+</mapper>
+
+

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.nacosspringclouddevicemanage.dao.water_dao.WaterTempDao">
+    <resultMap id="waterTempMap" type="org.example.nacosspringcloudcommonentity.water.WaterTemp">
+        <id column="id" property="id"/>
+        <result column="deviceId" property="deviceId"/>
+        <result column="curTemp" property="curTemp"/>
+        <result column="temp_time" property="time"/>
+    </resultMap>
+
+    <!--    TODO-->
+   <insert id="add" parameterType="org.example.nacosspringcloudcommonentity.water.WaterTemp">
+       insert into water_temp (deviceId,curTemp,temp_time) values (#{deviceId},#{curTemp},#{time})
+   </insert>
+
+    <select id="findLately" resultType="String">
+        select curTemp from water_temp where deviceId=#{deviceId} order by temp_time desc limit 0,1
+    </select>
+
+</mapper>
